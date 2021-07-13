@@ -1,0 +1,179 @@
+// Place all the styles related to the after controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+$main_font: verdana, arial, helvetica, sans-serif;
+$secondary_color: #000000;
+$primary_color: #ffffff;
+$accent_color: #fdc700;
+$x_padding: 80px;
+
+@mixin read_more($position){
+    @if $position == "main"{
+        border: 3px solid lighten($secondary_color, 10%);
+        color: lighten($secondary_color, 20%);
+        background-color: $accent_color;
+        text-decoration: none;
+        margin: 0 40px 20px 0;
+        border-radius: 6px;
+        position: relative;
+        padding: 8px 20px;
+        font-weight: bold;
+        font-size: 12px;
+        float: right;
+    }
+    @else{
+        $color: null;
+        $border: null;
+        $z_index: null;
+        $top: null;
+        
+        @if $position == "before"{
+            $color: $accent_color;
+            $border: 15px;
+            $z_index: 2;
+            $top: 0;
+        }
+        @else{
+            $color: $secondary_color;
+            $border: 18px;
+            $z_index: 1;
+            $top: -3px;
+        }
+        border-left: $border solid $color;
+        border-bottom: $border solid transparent;
+        border-top: $border solid transparent;
+        position: absolute;
+        content: '';
+        left: 100%;
+        z-index: $z_index;
+        top: $top;
+    }
+}
+
+body{
+    font-family: $main_font;
+    margin: 0;
+}
+
+header{
+    img, h2{
+        vertical-align: middle;
+        display: inline-block;
+    }
+    img{
+        padding-left: $x_padding;
+        width: 30%;
+    }
+    h2{
+        color: lighten($secondary_color, 20%);
+        padding-right: $x_padding;
+        margin-top: 40px;
+        font-size: 18px;
+        float: right;
+    }
+    ul{
+        border-bottom: 1px solid lighten($secondary_color, 60%);
+        border-top: 1px solid lighten($secondary_color, 60%);
+        background-color: lighten($secondary_color, 90%);
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 0;
+        li{
+            &:first-child{
+                border-left: 1px solid lighten($secondary_color, 60%);
+                margin-left: $x_padding - 20;
+            }
+            border-right: 1px solid lighten($secondary_color, 60%);
+            display: inline-block;
+            padding: 10px 29px;
+            a{
+                color: lighten($secondary_color, 30%);
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.main{
+    background-color: lighten($secondary_color, 15%);
+    padding: 20px $x_padding;
+    .about{
+        img, div{
+            display: inline-block;
+        }
+        img{
+            vertical-align: top;
+            width: 42%;
+        }
+        div{
+            background-color: lighten($secondary_color, 40%);
+            margin-left: 15px;
+            width: 56.48%;
+            h2{
+                color: lighten($secondary_color, 20%);
+                background-color: $accent_color;
+                padding: 10px 15px;
+                font-size: 16px;
+                margin: 0; 
+            }
+            div{
+                padding: 0 20px 94px 20px;
+                color: $primary_color;
+                font-size: 14px;
+                width: 90%;
+            }
+        }
+    }
+    .notif{
+        padding: 5px 20px;
+        img, p{
+            vertical-align: middle;
+            display: inline-block;
+        }
+        img{
+            width: 8%;
+        }
+        p{
+            color: $accent_color;
+            margin-left: 15px;
+            font-size: 12px;
+        }
+    }
+    .services{
+        div{
+            border: 3px solid lighten($secondary_color, 10%);
+            background-color: $primary_color;
+            display: inline-block;
+            vertical-align: top;
+            width: 24.24%;
+            height: 380px;
+            h3{
+                color: lighten($secondary_color, 20%);
+                background-color: $accent_color;
+                padding: 10px 20px;
+                font-size: 16px;
+                margin: 0;
+            }
+            img{
+                width: 100%;
+            }
+            p{
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            &:nth-child(2) a{
+                margin-top: 18px;
+            }
+            a{
+                @include read_more("main")
+            }
+            a:before{
+                @include read_more("before")
+            }
+            a:after{
+                @include read_more("after")
+            }
+        }
+    }
+    
+}
