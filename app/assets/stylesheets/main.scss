@@ -141,7 +141,7 @@ header{
     }
     .services{
         div{
-            border: 3px solid lighten($secondary_color, 10%);
+            border: 3px solid darken($primary_color, 90%);
             background-color: $primary_color;
             display: inline-block;
             vertical-align: top;
